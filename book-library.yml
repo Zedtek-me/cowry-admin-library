@@ -1,0 +1,42 @@
+services:
+  library_admin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: library_admin
+    container_name: library_admin
+    ports:
+      - 8080:8080
+    env_file:
+      - .env
+    depends_on:
+      - library_db
+    networks:
+      - library_network
+    restart: always
+    volumes:
+      - .:/library_admin/
+      - ./.env:/library_admin/.env
+
+  # db
+  library_db:
+    image: postgres
+    container_name: library_db
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    networks:
+      - library_network
+
+  # broker
+  broker:
+    image: rabbitmq:3-management
+    container_name: library_broker
+    volumes:
+      - ./rabbitmq.conf:/etc/conf.d/rabbitmq/rabbitmq.conf
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - library_network

@@ -1,0 +1,3 @@
+coweryVenv
+*pycache*
+.env
