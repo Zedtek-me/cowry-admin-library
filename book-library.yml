@@ -22,6 +22,8 @@ services:
   library_db:
     image: postgres
     container_name: library_db
+    volumes:
+      - library_admin_data:/var/lib/postgresqal/data
     ports:
       - 5432:5432
     env_file:
@@ -34,9 +36,15 @@ services:
     image: rabbitmq:3-management
     container_name: library_broker
     volumes:
-      - ./rabbitmq.conf:/etc/conf.d/rabbitmq/rabbitmq.conf
+      - ./rabbitmq.conf:/etc/rabbitmq/conf.d/rabbitmq.conf
     ports:
       - 5672:5672
       - 15672:15672
     networks:
       - library_network
+
+networks:
+  library_network:
+
+volumes:
+  library_admin_data:

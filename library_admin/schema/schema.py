@@ -1,6 +1,6 @@
 from graphene import Schema, ObjectType
-from library_app.schema.mutations import library_mutations
-from library_app.schema.queries import library_queries
+from library_admin_apps.library_app.schema.mutations import library_mutations
+from library_admin_apps.library_app.schema.queries import library_queries
 
 
 class RootMutation(library_mutations.Mutation, ObjectType):

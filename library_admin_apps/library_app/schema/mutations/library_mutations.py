@@ -23,7 +23,14 @@ class CreateBook(graphene.Mutation):
             book=added_book
         )
 
+class DeletBook(graphene.Mutation):
+    message = graphene.String()
 
+    class Arguments:
+        book_id = graphene.ID(required=True)
+
+    def mutate(self, book_id):
+        '''soft deletes a book'''
 
 class Mutation(graphene.ObjectType):
     '''root mutation for the library app'''
