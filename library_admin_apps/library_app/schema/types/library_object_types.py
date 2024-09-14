@@ -1,5 +1,5 @@
 from graphene_django import DjangoObjectType
-from library_app.models import Book
+from library_admin_apps.library_app.models import Book
 
 class BookType(DjangoObjectType):
     '''serialization repr for the book model'''
