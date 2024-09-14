@@ -1,4 +1,4 @@
-from library_app.models import Book
+from library_admin_apps.library_app.models import Book
 
 class BookUtils:
     '''all utilities related to the book model'''
