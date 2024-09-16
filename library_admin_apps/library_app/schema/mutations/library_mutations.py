@@ -1,5 +1,6 @@
 import graphene
 from django.db.transaction import atomic
+from django.contrib.auth.models import AnonymousUser
 from library_admin_apps.library_app.schema.types.library_object_types import BookType
 from library_admin_apps.library_app.schema.types.library_input_types import BookInputType
 from library_admin_apps.library_app.models import Book
@@ -25,8 +26,11 @@ class CreateBook(graphene.Mutation):
     @atomic
     def mutate(self, info, book_data):
         '''adds a book to the library'''
-
+        user = info.context.user
         added_book = BookUtils.create_book(book_data)
+        if user and not isinstance(user, AnonymousUser):
+            added_book.added_by = user.id
+            added_book.save()
         book_info = (added_book and added_book.__dict__) or None
         # publish to remote api that admin has added a new book to the library
         # this can be improved by making it ran by another process or other form of asynchronuos operations, e.g celery
