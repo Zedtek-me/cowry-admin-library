@@ -147,7 +147,7 @@ LOGGING = {
     "version": 1,
     "formatters": {
         "log_format":{
-            "format":"{message} {asctime}",
+            "format":"{asctime} {message}",
             "style":"{",
             "level":"DEBUG"
         }
