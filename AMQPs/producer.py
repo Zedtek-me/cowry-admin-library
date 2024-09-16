@@ -3,7 +3,7 @@ from django.conf import settings
 from typing import Type
 import json
 import logging
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("root")
 logger.setLevel("DEBUG")
 
 
