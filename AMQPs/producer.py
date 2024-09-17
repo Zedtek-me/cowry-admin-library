@@ -49,6 +49,7 @@ class Publisher:
         publisher.publish(
             body=json.dumps(msg),
             routing_key=routing_key,
-            exchange=exchange
+            exchange=exchange,
+            content_type="application/json"
         )
         return "message published"

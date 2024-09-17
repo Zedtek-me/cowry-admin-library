@@ -36,7 +36,8 @@ class CreateBook(graphene.Mutation):
             "remote_book_id": book_info.get("_id"),
             "book_title": book_info.get("title"),
             "book_author": book_info.get("author"),
-            "status": book_info.get("status")
+            "status": book_info.get("status"),
+            "description": book_info.get("summary")
         }
         # publish to remote api that admin has added a new book to the library
         # this can be improved by making it ran by another process or other form of asynchronuos operations, e.g celery

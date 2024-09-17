@@ -45,6 +45,8 @@ services:
 
 networks:
   library_network:
+    external: true
+
 
 volumes:
   library_admin_data:
